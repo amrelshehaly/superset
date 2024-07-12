@@ -1,13 +1,17 @@
 # Use an official Python runtime as a parent image
 FROM python:3.8-slim
 
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libgeos-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy the current directory contents into the container at /app
 COPY . /app
-
-RUN sudo apt-get install gcc gcc-c++ libffi-devel python3-devel python3-pip python3-wheel openssl-devel cyrus-sasl-devel openldap-devel
 
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
