@@ -20,7 +20,7 @@ RUN pip install -r requirements.txt
 # RUN pip install apache-superset
 
 # Set environment variables
-COPY --chown=superset superset_config.py /app/
+# COPY --chown=superset superset_config.py /app/
 ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 # Initialize the database
