@@ -19,6 +19,10 @@ RUN pip install -r requirements.txt
 # Install Apache Superset
 # RUN pip install apache-superset
 
+# Set environment variables
+COPY --chown=superset superset_config.py /app/
+ENV SUPERSET_CONFIG_PATH /app/superset_config.py
+
 # Initialize the database
 RUN superset db upgrade
 RUN superset fab create-admin --username admin --firstname Superset --lastname Admin --email admin@example.com --password admin
