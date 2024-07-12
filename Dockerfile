@@ -3,7 +3,6 @@ FROM python:3.8-slim
 
 # Set environment variables
 # COPY --chown=superset superset_config.py /app/
-ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -21,6 +20,10 @@ COPY . /app
 
 # Install Apache Superset
 RUN pip install apache-superset
+
+# RUN pip install superset
+COPY --chown=superset /app/superset_config.py /app/
+ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 
 # Initialize the database
