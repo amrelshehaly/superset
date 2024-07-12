@@ -1,6 +1,9 @@
 # Use an official Python runtime as a parent image
 FROM python:3.8-slim
 
+# Set environment variables
+# COPY --chown=superset superset_config.py /app/
+ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -14,14 +17,11 @@ WORKDIR /app
 COPY . /app
 
 # Install any needed packages specified in requirements.txt
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
 
 # Install Apache Superset
-# RUN pip install apache-superset
+RUN pip install apache-superset
 
-# Set environment variables
-# COPY --chown=superset superset_config.py /app/
-ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 # Initialize the database
 RUN superset db upgrade
