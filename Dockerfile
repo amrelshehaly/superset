@@ -17,7 +17,7 @@ COPY . /app
 RUN pip install -r requirements.txt
 
 # Install Apache Superset
-RUN pip install apache-superset
+# RUN pip install apache-superset
 
 # Initialize the database
 RUN superset db upgrade
