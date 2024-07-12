@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
+RUN sudo apt-get install gcc gcc-c++ libffi-devel python3-devel python3-pip python3-wheel openssl-devel cyrus-sasl-devel openldap-devel
+
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
